@@ -1,719 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why Book Direct | GRT Hotels</title>
-  
-  <!-- Fonts -->
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    /* ===== CSS Reset & Base Styles ===== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    :root {
-      /* Brand Colors */
-      --primary-red: #C1282F;
-      --primary-red-light: rgba(193, 40, 47, 0.08);
-      --primary-red-dark: #9C1F25;
-      --secondary-red: rgba(193, 40, 47, 0.1);
-      
-      /* Gray Scale - Professional */
-      --gray-50: #FAFAFA;
-      --gray-100: #F5F5F5;
-      --gray-200: #EEEEEE;
-      --gray-300: #E0E0E0;
-      --gray-400: #BDBDBD;
-      --gray-500: #9E9E9E;
-      --gray-600: #757575;
-      --gray-700: #616161;
-      --gray-800: #424242;
-      --gray-900: #212121;
-      
-      /* Semantic Colors */
-      --text-primary: var(--gray-900);
-      --text-secondary: var(--gray-700);
-      --text-tertiary: var(--gray-600);
-      --border-color: var(--gray-200);
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
-      
-      /* Spacing */
-      --spacing-xs: 0.5rem;
-      --spacing-sm: 1rem;
-      --spacing-md: 1.5rem;
-      --spacing-lg: 2rem;
-      --spacing-xl: 3rem;
-      --spacing-xxl: 5rem;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    
-    body {
-      font-family: 'Satoshi', sans-serif;
-      background-color: white;
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 var(--spacing-lg);
-    }
-    
-    /* ===== Header Section ===== */
-    .section-header {
-      text-align: center;
-      padding: var(--spacing-xxl) 0 var(--spacing-xl);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .header-badge {
-      display: inline-block;
-      background-color: var(--primary-red-light);
-      color: var(--primary-red);
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 0.5rem 1.25rem;
-      border-radius: 50px;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .heading {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: var(--spacing-md);
-      color: var(--gray-900);
-    }
-    
-    .heading-part {
-      color: var(--primary-red);
-    }
-    
-    .subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 400;
-    }
-    
-    /* ===== Benefits Grid ===== */
-    .benefits-section {
-      padding: var(--spacing-xl) 0;
-    }
-    
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-xxl);
-    }
-    
-    .benefit-card {
-      background: white;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
-      padding: var(--spacing-lg);
-      transition: all 0.3s ease;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--card-shadow-hover);
-      border-color: var(--primary-red-light);
-    }
-    
-    .benefit-card.featured {
-      border: 2px solid var(--primary-red);
-      position: relative;
-    }
-    
-    .featured-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background-color: var(--primary-red);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      letter-spacing: 0.5px;
-    }
-    
-    .card-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 12px;
-      background-color: var(--primary-red-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .card-icon i {
-      font-size: 1.75rem;
-      color: var(--primary-red);
-    }
-    
-    .card-title {
-      font-size: 1.375rem;
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
-      color: var(--gray-900);
-    }
-    
-    .card-description {
-      color: var(--text-secondary);
-      margin-bottom: var(--spacing-md);
-      font-size: 1rem;
-    }
-    
-    .card-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--primary-red);
-      background-color: var(--secondary-red);
-      padding: 0.25rem 0.75rem;
-      border-radius: 50px;
-      letter-spacing: 0.5px;
-    }
-    
-    /* ===== Guarantee Section ===== */
-    .guarantee-section {
-      background-color: var(--gray-50);
-      border-radius: 24px;
-      padding: var(--spacing-xl);
-      margin: var(--spacing-xxl) 0;
-      border: 1px solid var(--border-color);
-      text-align: center;
-    }
-    
-    .guarantee-content {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .guarantee-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
-      color: var(--gray-900);
-    }
-    
-    .guarantee-subtitle {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .guarantee-highlight {
-      display: inline-flex;
-      align-items: center;
-      background-color: white;
-      border-radius: 12px;
-      padding: var(--spacing-sm) var(--spacing-md);
-      margin-top: var(--spacing-md);
-      border: 1px solid var(--border-color);
-      box-shadow: var(--card-shadow);
-    }
-    
-    .guarantee-highlight i {
-      color: var(--primary-red);
-      font-size: 1.5rem;
-      margin-right: var(--spacing-sm);
-    }
-    
-    /* ===== Stats Section ===== */
-    .stats-section {
-      padding: var(--spacing-xl) 0;
-      margin: var(--spacing-xxl) 0;
-    }
-    
-    .stats-container {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: var(--spacing-lg);
-    }
-    
-    .stat-item {
-      text-align: center;
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .stat-value {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--primary-red);
-      margin-bottom: 0.5rem;
-    }
-    
-    .stat-label {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      letter-spacing: 0.5px;
-    }
-    
-    /* ===== CTA Section ===== */
-    .cta-section {
-      text-align: center;
-      padding: var(--spacing-xxl) 0;
-      background-color: var(--gray-50);
-      border-radius: 24px;
-      margin: var(--spacing-xl) 0;
-    }
-    
-    .cta-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: var(--spacing-sm);
-      color: var(--gray-900);
-    }
-    
-    .cta-subtitle {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto var(--spacing-lg);
-    }
-    
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-      background-color: var(--primary-red);
-      color: white;
-      font-size: 1.125rem;
-      font-weight: 700;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .cta-button:hover {
-      background-color: var(--primary-red-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(193, 40, 47, 0.2);
-    }
-    
-    .cta-note {
-      font-size: 0.875rem;
-      color: var(--text-tertiary);
-    }
-    
-    /* ===== Footer ===== */
-    .footer {
-      border-top: 1px solid var(--border-color);
-      padding: var(--spacing-xl) 0;
-      margin-top: var(--spacing-xxl);
-      color: var(--text-secondary);
-      font-size: 0.875rem;
-      text-align: center;
-    }
-    
-    .footer-logo {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--gray-900);
-      margin-bottom: var(--spacing-sm);
-    }
-    
-    .footer-logo span {
-      color: var(--primary-red);
-    }
-    
-    .footer-tagline {
-      color: var(--text-tertiary);
-      margin-bottom: var(--spacing-md);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .footer-copyright {
-      color: var(--text-tertiary);
-      font-size: 0.75rem;
-    }
-    
-    /* ===== Loading Overlay ===== */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    .loading-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid var(--gray-200);
-      border-top-color: var(--primary-red);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .loading-text {
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* ===== Responsive Design ===== */
-    @media (max-width: 992px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Book Direct | GRT Hotels</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===== CSS Reset & Base Styles ===== */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        /* Brand Colors */
+        --primary-red: #c1282f;
+        --primary-red-light: rgba(193, 40, 47, 0.08);
+        --primary-red-dark: #9c1f25;
+        --secondary-red: rgba(193, 40, 47, 0.1);
+
+        /* Gray Scale - Professional */
+        --gray-50: #fafafa;
+        --gray-100: #f5f5f5;
+        --gray-200: #eeeeee;
+        --gray-300: #e0e0e0;
+        --gray-400: #bdbdbd;
+        --gray-500: #9e9e9e;
+        --gray-600: #757575;
+        --gray-700: #616161;
+        --gray-800: #424242;
+        --gray-900: #212121;
+
+        /* Semantic Colors */
+        --text-primary: var(--gray-900);
+        --text-secondary: var(--gray-700);
+        --text-tertiary: var(--gray-600);
+        --border-color: var(--gray-200);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+        /* Spacing */
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+        --spacing-xxl: 5rem;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: "Satoshi", sans-serif;
+        background-color: white;
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-lg);
+      }
+
+      /* ===== Header Section ===== */
+      .section-header {
+        text-align: center;
+        padding: var(--spacing-xxl) 0 var(--spacing-xl);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .header-badge {
+        display: inline-block;
+        background-color: var(--primary-red-light);
+        color: var(--primary-red);
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        margin-bottom: var(--spacing-md);
+      }
+
       .heading {
-        font-size: 2.75rem;
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: var(--spacing-md);
+        color: var(--gray-900);
       }
-      
-      .benefits-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+      .heading-part {
+        color: var(--primary-red);
       }
-      
-      .stats-container {
-        justify-content: center;
-      }
-      
-      .stat-item {
-        min-width: 170px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .heading {
-        font-size: 2.25rem;
-      }
-      
+
       .subtitle {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 400;
       }
-      
+
+      /* ===== Benefits Grid ===== */
+      .benefits-section {
+        padding: var(--spacing-xl) 0;
+      }
+
       .benefits-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xxl);
+      }
+
+      .benefit-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        padding: var(--spacing-lg);
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-shadow-hover);
+        border-color: var(--primary-red-light);
+      }
+
+      .benefit-card.featured {
+        border: 2px solid var(--primary-red);
+        position: relative;
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background-color: var(--primary-red);
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+      }
+
+      .card-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        background-color: var(--primary-red-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .card-icon i {
+        font-size: 1.75rem;
+        color: var(--primary-red);
+      }
+
+      .card-title {
+        font-size: 1.375rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-sm);
+        color: var(--gray-900);
+      }
+
+      .card-description {
+        color: var(--text-secondary);
+        margin-bottom: var(--spacing-md);
+        font-size: 1rem;
+      }
+
+      .card-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--primary-red);
+        background-color: var(--secondary-red);
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== Guarantee Section ===== */
+      .guarantee-section {
+        background-color: var(--gray-50);
+        border-radius: 24px;
+        padding: var(--spacing-xl);
+        margin: var(--spacing-xxl) 0;
+        border: 1px solid var(--border-color);
+        text-align: center;
+      }
+
+      .guarantee-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .guarantee-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-sm);
+        color: var(--gray-900);
+      }
+
+      .guarantee-subtitle {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .guarantee-highlight {
+        display: inline-flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 12px;
+        padding: var(--spacing-sm) var(--spacing-md);
+        margin-top: var(--spacing-md);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+      }
+
+      .guarantee-highlight i {
+        color: var(--primary-red);
+        font-size: 1.5rem;
+        margin-right: var(--spacing-sm);
+      }
+
+      /* ===== Stats Section ===== */
+      .stats-section {
+        padding: var(--spacing-xl) 0;
+        margin: var(--spacing-xxl) 0;
+      }
+
+      .stats-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: var(--spacing-lg);
+      }
+
+      .stat-item {
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .stat-value {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-red);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== CTA Section ===== */
+      .cta-section {
+        text-align: center;
+        padding: var(--spacing-xxl) 0;
+        background-color: var(--gray-50);
+        border-radius: 24px;
+        margin: var(--spacing-xl) 0;
+      }
+
+      .cta-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: var(--spacing-sm);
+        color: var(--gray-900);
+      }
+
+      .cta-subtitle {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto var(--spacing-lg);
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        background-color: var(--primary-red);
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 700;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .cta-button:hover {
+        background-color: var(--primary-red-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(193, 40, 47, 0.2);
+      }
+
+      .cta-note {
+        font-size: 0.875rem;
+        color: var(--text-tertiary);
+      }
+
+      /* ===== Footer ===== */
+      .footer {
+        border-top: 1px solid var(--border-color);
+        padding: var(--spacing-xl) 0;
+        margin-top: var(--spacing-xxl);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        text-align: center;
+      }
+
+      .footer-logo {
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--gray-900);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .footer-logo span {
+        color: var(--primary-red);
+      }
+
+      .footer-tagline {
+        color: var(--text-tertiary);
+        margin-bottom: var(--spacing-md);
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
       }
-      
-      .guarantee-title {
-        font-size: 1.75rem;
+
+      .footer-copyright {
+        color: var(--text-tertiary);
+        font-size: 0.75rem;
       }
-    }
-    
-    @media (max-width: 576px) {
-      .container {
-        padding: 0 var(--spacing-sm);
+
+      /* ===== Loading Overlay ===== */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
       }
-      
-      .section-header {
-        padding: var(--spacing-xl) 0 var(--spacing-lg);
+
+      .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
       }
-      
-      .heading {
-        font-size: 1.875rem;
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid var(--gray-200);
+        border-top-color: var(--primary-red);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: var(--spacing-md);
       }
-      
-      .cta-title {
-        font-size: 2rem;
+
+      .loading-text {
+        color: var(--text-secondary);
+        font-weight: 500;
       }
-      
-      .stat-value {
-        font-size: 2.5rem;
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
       }
-      
-      .cta-button {
-        padding: 0.875rem 2rem;
-        font-size: 1rem;
+
+      /* ===== Responsive Design ===== */
+      @media (max-width: 992px) {
+        .heading {
+          font-size: 2.75rem;
+        }
+
+        .benefits-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .stats-container {
+          justify-content: center;
+        }
+
+        .stat-item {
+          min-width: 170px;
+        }
       }
-    }
-    
-    /* ===== Animation ===== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease forwards;
-    }
-  </style>
-</head>
 
-<body>
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Redirecting to GRT Hotels Booking Portal...</div>
-  </div>
+      @media (max-width: 768px) {
+        .heading {
+          font-size: 2.25rem;
+        }
 
-  <div class="container">
-    <!-- Header Section -->
-    <header class="section-header fade-in">
-      <div class="header-badge">Exclusive Benefits</div>
-      <h1 class="heading">Why Book <span class="heading-part">Direct?</span></h1>
-      <p class="subtitle">Experience premium hospitality with exclusive benefits reserved only for guests who book directly through our official channels.</p>
-    </header>
+        .subtitle {
+          font-size: 1.125rem;
+        }
 
-    <!-- Benefits Grid -->
-    <section class="benefits-section">
-      <div class="benefits-grid">
-        <!-- Card 1 -->
-        <div class="benefit-card fade-in">
-          <div class="card-icon">
-            <i class="fas fa-credit-card"></i>
-          </div>
-          <h3 class="card-title">Pay at Hotel</h3>
-          <p class="card-description">No advance payment required. Flexible payment options available upon arrival with no hidden fees.</p>
-          <span class="card-tag">Direct Booking Benefit</span>
-        </div>
+        .benefits-grid {
+          grid-template-columns: 1fr;
+          max-width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
 
-        <!-- Card 2 -->
-        <div class="benefit-card fade-in">
-          <div class="card-icon">
-            <i class="fas fa-crown"></i>
-          </div>
-          <h3 class="card-title">Member Savings</h3>
-          <p class="card-description">Save 10% on rooms & 15% on dining. Exclusive member-only offers and priority access to promotions.</p>
-          <span class="card-tag">Loyalty Program</span>
-        </div>
+        .guarantee-title {
+          font-size: 1.75rem;
+        }
+      }
 
-        <!-- Card 3 -->
-        <div class="benefit-card fade-in">
-          <div class="card-icon">
-            <i class="fas fa-coffee"></i>
-          </div>
-          <h3 class="card-title">Complimentary Breakfast</h3>
-          <p class="card-description">Daily gourmet breakfast included with your stay at our award-winning restaurant.</p>
-          <span class="card-tag">Daily Inclusion</span>
-        </div>
+      @media (max-width: 576px) {
+        .container {
+          padding: 0 var(--spacing-sm);
+        }
 
-        <!-- Card 4 -->
-        <div class="benefit-card fade-in">
-          <div class="card-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <h3 class="card-title">Extended Checkout</h3>
-          <p class="card-description">Late checkout until 4 p.m. upon availability. Enjoy your day without the rush.</p>
-          <span class="card-tag">Flexible Stay</span>
-        </div>
+        .section-header {
+          padding: var(--spacing-xl) 0 var(--spacing-lg);
+        }
 
-        <!-- Card 5 -->
-        <div class="benefit-card fade-in">
-          <div class="card-icon">
-            <i class="fas fa-calendar-times"></i>
-          </div>
-          <h3 class="card-title">Free Cancellation</h3>
-          <p class="card-description">Cancel free until 12 noon on arrival day. Flexible plans with no cancellation fees.</p>
-          <span class="card-tag">Risk-Free</span>
-        </div>
+        .heading {
+          font-size: 1.875rem;
+        }
 
-        <!-- Featured Card -->
-        <div class="benefit-card featured fade-in">
-          <div class="featured-badge">Best Value</div>
-          <div class="card-icon">
-            <i class="fas fa-percent"></i>
-          </div>
-          <h3 class="card-title">Best Rate Guaranteed</h3>
-          <p class="card-description">Lowest prices guaranteed when booking directly. Found a better rate elsewhere? We'll match it plus give you an additional 10% off.</p>
-          <span class="card-tag">Exclusive Rate</span>
-        </div>
+        .cta-title {
+          font-size: 2rem;
+        }
+
+        .stat-value {
+          font-size: 2.5rem;
+        }
+
+        .cta-button {
+          padding: 0.875rem 2rem;
+          font-size: 1rem;
+        }
+      }
+
+      /* ===== Animation ===== */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.6s ease forwards;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">
+        Redirecting to GRT Hotels Booking Portal...
       </div>
-    </section>
+    </div>
 
-    <!-- Guarantee Section -->
-    <section class="guarantee-section fade-in">
-      <div class="guarantee-content">
-        <h2 class="guarantee-title">Our Direct Booking Guarantee</h2>
-        <p class="guarantee-subtitle">When you book directly with us, you're not just reserving a room—you're securing a premium experience with exclusive advantages unavailable through third-party sites.</p>
-        <div class="guarantee-highlight">
-          <i class="fas fa-shield-alt"></i>
-          <span>Secure booking with direct customer support and flexible modifications</span>
-        </div>
-      </div>
-    </section>
+    <div class="container">
+      <!-- Header Section -->
+      <header class="section-header fade-in">
+        <div class="header-badge">Exclusive Benefits</div>
+        <h1 class="heading">
+          Why Book <span class="heading-part">Direct?</span>
+        </h1>
+        <p class="subtitle">
+          Experience premium hospitality with exclusive benefits reserved only
+          for guests who book directly through our official channels.
+        </p>
+      </header>
 
-    <!-- Stats Section -->
-    <section class="stats-section fade-in">
-      <div class="stats-container">
-        <div class="stat-item">
-          <div class="stat-value">98%</div>
-          <div class="stat-label">Guest Satisfaction</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">24/7</div>
-          <div class="stat-label">Direct Support</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">100%</div>
-          <div class="stat-label">Rate Guarantee</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">50K+</div>
-          <div class="stat-label">Direct Guests</div>
-        </div>
-      </div>
-    </section>
+      <!-- Benefits Grid -->
+      <section class="benefits-section">
+        <div class="benefits-grid">
+          <!-- Card 1 -->
+          <div class="benefit-card fade-in">
+            <div class="card-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3 class="card-title">Pay at Hotel</h3>
+            <p class="card-description">
+              No advance payment required. Flexible payment options available
+              upon arrival with no hidden fees.
+            </p>
+            <span class="card-tag">Direct Booking Benefit</span>
+          </div>
 
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
-      <h2 class="cta-title">Ready to Experience More?</h2>
-      <p class="cta-subtitle">Join thousands of satisfied guests who enjoy exclusive benefits by booking directly.</p>
-      <button class="cta-button" id="bookDirectBtn">
-        <span>Book Direct Now</span>
-        <i class="fas fa-arrow-right"></i>
-      </button>
-      <p class="cta-note">No booking fees • Best price guaranteed • Flexible cancellation</p>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-logo">GRT<span>Hotels</span></div>
-      <p class="footer-tagline">Experience luxury hospitality with the assurance of direct booking benefits and personalized service.</p>
-      <div class="footer-copyright">
-        © 2023 GRT Hotels & Resorts. All rights reserved.
-      </div>
-    </footer>
-  </div>
+          <!-- Card 2 -->
+          <div class="benefit-card fade-in">
+            <div class="card-icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h3 class="card-title">Member Savings</h3>
+            <p class="card-description">
+              Save 10% on rooms & 15% on dining. Exclusive member-only offers
+              and priority access to promotions.
+            </p>
+            <span class="card-tag">Loyalty Program</span>
+          </div>
 
-  <script>
-    // Booking URL
-    const BOOKING_URL = "https://bookings.grthotels.com/?propertyId=9109&checkIn=2025-12-12&checkOut=2025-12-13&packageId=367828_13223&adults=2&source=google_hotel_ads&bookingSource=commissions&VERIFICATION=true&utm_source=Organic&utm_medium=Google_Hotel_Ads&adType=0&utm_campaign=localuniversal&aid=";
+          <!-- Card 3 -->
+          <div class="benefit-card fade-in">
+            <div class="card-icon">
+              <i class="fas fa-coffee"></i>
+            </div>
+            <h3 class="card-title">Complimentary Breakfast</h3>
+            <p class="card-description">
+              Daily gourmet breakfast included with your stay at our
+              award-winning restaurant.
+            </p>
+            <span class="card-tag">Daily Inclusion</span>
+          </div>
 
-    // Interactive elements
-    document.addEventListener('DOMContentLoaded', function() {
-      // Animation on scroll
-      const fadeElements = document.querySelectorAll('.fade-in');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
+          <!-- Card 4 -->
+          <div class="benefit-card fade-in">
+            <div class="card-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="card-title">Extended Checkout</h3>
+            <p class="card-description">
+              Late checkout until 4 p.m. upon availability. Enjoy your day
+              without the rush.
+            </p>
+            <span class="card-tag">Flexible Stay</span>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="benefit-card fade-in">
+            <div class="card-icon">
+              <i class="fas fa-calendar-times"></i>
+            </div>
+            <h3 class="card-title">Free Cancellation</h3>
+            <p class="card-description">
+              Cancel free until 12 noon on arrival day. Flexible plans with no
+              cancellation fees.
+            </p>
+            <span class="card-tag">Risk-Free</span>
+          </div>
+
+          <!-- Featured Card -->
+          <div class="benefit-card featured fade-in">
+            <div class="featured-badge">Best Value</div>
+            <div class="card-icon">
+              <i class="fas fa-percent"></i>
+            </div>
+            <h3 class="card-title">Best Rate Guaranteed</h3>
+            <p class="card-description">
+              Lowest prices guaranteed when booking directly. Found a better
+              rate elsewhere? We'll match it plus give you an additional 10%
+              off.
+            </p>
+            <span class="card-tag">Exclusive Rate</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guarantee Section -->
+      <section class="guarantee-section fade-in">
+        <div class="guarantee-content">
+          <h2 class="guarantee-title">Our Direct Booking Guarantee</h2>
+          <p class="guarantee-subtitle">
+            When you book directly with us, you're not just reserving a
+            room—you're securing a premium experience with exclusive advantages
+            unavailable through third-party sites.
+          </p>
+          <div class="guarantee-highlight">
+            <i class="fas fa-shield-alt"></i>
+            <span
+              >Secure booking with direct customer support and flexible
+              modifications</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section fade-in">
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-value">98%</div>
+            <div class="stat-label">Guest Satisfaction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Direct Support</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Rate Guarantee</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">50K+</div>
+            <div class="stat-label">Direct Guests</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section fade-in">
+        <h2 class="cta-title">Ready to Experience More?</h2>
+        <p class="cta-subtitle">
+          Join thousands of satisfied guests who enjoy exclusive benefits by
+          booking directly.
+        </p>
+        <button class="cta-button" id="bookDirectBtn">
+          <span>Book Direct Now</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        <p class="cta-note">
+          No booking fees • Best price guaranteed • Flexible cancellation
+        </p>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-logo">GRT<span>Hotels</span></div>
+        <p class="footer-tagline">
+          Experience luxury hospitality with the assurance of direct booking
+          benefits and personalized service.
+        </p>
+        <div class="footer-copyright">
+          © 2023 GRT Hotels & Resorts. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Booking URL
+      const BOOKING_URL =
+        "https://bookings.grthotels.com/?propertyId=9109&checkIn=2025-12-12&checkOut=2025-12-13&packageId=367828_13223&adults=2&source=google_hotel_ads&bookingSource=commissions&VERIFICATION=true&utm_source=Organic&utm_medium=Google_Hotel_Ads&adType=0&utm_campaign=localuniversal&aid=";
+
+      // Interactive elements
+      document.addEventListener("DOMContentLoaded", function () {
+        // Animation on scroll
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        fadeElements.forEach((el) => {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
         });
-      }, { threshold: 0.1 });
-      
-      fadeElements.forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-      });
-      
-      // Get DOM elements
-      const bookButton = document.getElementById('bookDirectBtn');
-      const loadingOverlay = document.getElementById('loadingOverlay');
-      
-      // CTA Button Interaction
-      bookButton.addEventListener('click', function() {
-        // Animation effect
-        this.style.transform = 'scale(0.95)';
-        
-        // Show loading overlay
-        loadingOverlay.classList.add('active');
-        
-        // Change button text temporarily
-        const originalContent = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-check"></i><span>Redirecting...</span>';
-        this.style.backgroundColor = '#2E7D32';
-        
-        // Wait a moment for animation to complete
-        setTimeout(() => {
-          // Reset button style
-          this.style.transform = '';
-          
-          // Redirect to booking URL after short delay
+
+        // Get DOM elements
+        const bookButton = document.getElementById("bookDirectBtn");
+
+        // CTA Button Interaction - Simple version
+        bookButton.addEventListener("click", function () {
+          // Animation effect
+          this.style.transform = "scale(0.95)";
+
+          // Change button text temporarily
+          const originalContent = this.innerHTML;
+          this.innerHTML =
+            '<i class="fas fa-external-link-alt"></i><span>Opening...</span>';
+
+          // Wait a moment for animation to complete
           setTimeout(() => {
-            window.location.href = BOOKING_URL;
-          }, 1000);
-        }, 200);
-      });
-      
-      // Card hover enhancement
-      const cards = document.querySelectorAll('.benefit-card');
-      
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.zIndex = '10';
+            // Reset button style
+            this.style.transform = "";
+
+            // Open booking URL in new tab
+            window.open(BOOKING_URL, "_blank");
+
+            // Reset button text after delay
+            setTimeout(() => {
+              this.innerHTML = originalContent;
+            }, 1000);
+          }, 200);
         });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.zIndex = '1';
+
+        // Card hover enhancement
+        const cards = document.querySelectorAll(".benefit-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.zIndex = "10";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.zIndex = "1";
+          });
         });
+
+        // Update copyright year
+        const copyrightElement = document.querySelector(".footer-copyright");
+        if (copyrightElement) {
+          copyrightElement.textContent = copyrightElement.textContent.replace(
+            "2023",
+            new Date().getFullYear()
+          );
+        }
       });
-      
-      // Update copyright year
-      const copyrightElement = document.querySelector('.footer-copyright');
-      if (copyrightElement) {
-        copyrightElement.textContent = copyrightElement.textContent.replace('2023', new Date().getFullYear());
-      }
-      
-      // Add click handlers for all "Book Direct" elements (for future expansion)
-      const bookDirectElements = document.querySelectorAll('[data-book-direct]');
-      bookDirectElements.forEach(element => {
-        element.addEventListener('click', function() {
-          loadingOverlay.classList.add('active');
-          setTimeout(() => {
-            window.location.href = BOOKING_URL;
-          }, 500);
-        });
-      });
-    });
-    
-    // Handle page visibility changes
-    document.addEventListener('visibilitychange', function() {
-      const loadingOverlay = document.getElementById('loadingOverlay');
-      if (document.visibilityState === 'hidden') {
-        // User has likely navigated away
-        loadingOverlay.classList.remove('active');
-      }
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
