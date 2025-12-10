@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why Book Direct | Premium Hotel Experience</title>
+  <title>Why Book Direct | GRT Hotels</title>
   
   <!-- Fonts -->
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
@@ -337,39 +337,73 @@
       margin-top: var(--spacing-xxl);
       color: var(--text-secondary);
       font-size: 0.875rem;
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-md);
+      text-align: center;
     }
     
     .footer-logo {
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       color: var(--gray-900);
+      margin-bottom: var(--spacing-sm);
     }
     
     .footer-logo span {
       color: var(--primary-red);
     }
     
-    .footer-links {
+    .footer-tagline {
+      color: var(--text-tertiary);
+      margin-bottom: var(--spacing-md);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .footer-copyright {
+      color: var(--text-tertiary);
+      font-size: 0.75rem;
+    }
+    
+    /* ===== Loading Overlay ===== */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
       display: flex;
-      gap: var(--spacing-lg);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
     
-    .footer-links a {
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--gray-200);
+      border-top-color: var(--primary-red);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .loading-text {
       color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      font-weight: 500;
     }
     
-    .footer-links a:hover {
-      color: var(--primary-red);
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
     
     /* ===== Responsive Design ===== */
@@ -407,16 +441,6 @@
         margin-right: auto;
       }
       
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .footer-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
       .guarantee-title {
         font-size: 1.75rem;
       }
@@ -442,6 +466,11 @@
       .stat-value {
         font-size: 2.5rem;
       }
+      
+      .cta-button {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+      }
     }
     
     /* ===== Animation ===== */
@@ -457,6 +486,12 @@
 </head>
 
 <body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Redirecting to GRT Hotels Booking Portal...</div>
+  </div>
+
   <div class="container">
     <!-- Header Section -->
     <header class="section-header fade-in">
@@ -522,7 +557,7 @@
         <div class="benefit-card featured fade-in">
           <div class="featured-badge">Best Value</div>
           <div class="card-icon">
-            <i class="fa-solid fa-percent"></i>
+            <i class="fas fa-percent"></i>
           </div>
           <h3 class="card-title">Best Rate Guaranteed</h3>
           <p class="card-description">Lowest prices guaranteed when booking directly. Found a better rate elsewhere? We'll match it plus give you an additional 10% off.</p>
@@ -575,9 +610,21 @@
       </button>
       <p class="cta-note">No booking fees • Best price guaranteed • Flexible cancellation</p>
     </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-logo">GRT<span>Hotels</span></div>
+      <p class="footer-tagline">Experience luxury hospitality with the assurance of direct booking benefits and personalized service.</p>
+      <div class="footer-copyright">
+        © 2023 GRT Hotels & Resorts. All rights reserved.
+      </div>
+    </footer>
   </div>
 
   <script>
+    // Booking URL
+    const BOOKING_URL = "https://bookings.grthotels.com/?propertyId=9109&checkIn=2025-12-12&checkOut=2025-12-13&packageId=367828_13223&adults=2&source=google_hotel_ads&bookingSource=commissions&VERIFICATION=true&utm_source=Organic&utm_medium=Google_Hotel_Ads&adType=0&utm_campaign=localuniversal&aid=";
+
     // Interactive elements
     document.addEventListener('DOMContentLoaded', function() {
       // Animation on scroll
@@ -599,25 +646,31 @@
         observer.observe(el);
       });
       
-      // CTA Button Interaction
+      // Get DOM elements
       const bookButton = document.getElementById('bookDirectBtn');
+      const loadingOverlay = document.getElementById('loadingOverlay');
       
+      // CTA Button Interaction
       bookButton.addEventListener('click', function() {
         // Animation effect
         this.style.transform = 'scale(0.95)';
+        
+        // Show loading overlay
+        loadingOverlay.classList.add('active');
+        
+        // Change button text temporarily
+        const originalContent = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i><span>Redirecting...</span>';
+        this.style.backgroundColor = '#2E7D32';
+        
+        // Wait a moment for animation to complete
         setTimeout(() => {
+          // Reset button style
           this.style.transform = '';
           
-          // Show confirmation message
-          const originalContent = this.innerHTML;
-          this.innerHTML = '<i class="fas fa-check"></i><span>Redirecting to Booking...</span>';
-          this.style.backgroundColor = '#2E7D32';
-          
-          // Simulate booking process
+          // Redirect to booking URL after short delay
           setTimeout(() => {
-            alert('You are being redirected to our secure booking portal...');
-            this.innerHTML = originalContent;
-            this.style.backgroundColor = '';
+            window.location.href = BOOKING_URL;
           }, 1000);
         }, 200);
       });
@@ -635,10 +688,30 @@
         });
       });
       
-      // Add current year to footer
-      const yearSpan = document.querySelector('.footer div:last-child');
-      if (yearSpan) {
-        yearSpan.textContent = yearSpan.textContent.replace('2023', new Date().getFullYear());
+      // Update copyright year
+      const copyrightElement = document.querySelector('.footer-copyright');
+      if (copyrightElement) {
+        copyrightElement.textContent = copyrightElement.textContent.replace('2023', new Date().getFullYear());
+      }
+      
+      // Add click handlers for all "Book Direct" elements (for future expansion)
+      const bookDirectElements = document.querySelectorAll('[data-book-direct]');
+      bookDirectElements.forEach(element => {
+        element.addEventListener('click', function() {
+          loadingOverlay.classList.add('active');
+          setTimeout(() => {
+            window.location.href = BOOKING_URL;
+          }, 500);
+        });
+      });
+    });
+    
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', function() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      if (document.visibilityState === 'hidden') {
+        // User has likely navigated away
+        loadingOverlay.classList.remove('active');
       }
     });
   </script>
